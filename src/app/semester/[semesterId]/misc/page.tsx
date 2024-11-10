@@ -1,16 +1,12 @@
 import Link from "next/link";
 
 type Props = {
-  params: {
-    semesterId: string;
-  };
-  searchParams: {
-    [key: string]: string | string[] | undefined;
-  };
+  params: Promise<{ semesterId: string }>;
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export default async function MiscPage({ params }: Props) {
-  const { semesterId } = params;
+  const { semesterId } = await params;
 
   // In a real app, you'd fetch this data from an API or database
   const pdfs = [
