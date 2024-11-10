@@ -1,10 +1,16 @@
+// app/semester/[semesterId]/page.tsx
 import Link from "next/link";
 
 type Props = {
-  params: { semesterId: string };
+  params: {
+    semesterId: string;
+  };
+  searchParams: {
+    [key: string]: string | string[] | undefined;
+  };
 };
 
-export default function SemesterPage({ params }: Props) {
+export default async function SemesterPage({ params, searchParams }: Props) {
   const { semesterId } = params;
   const subjects = Array.from({ length: 5 }, (_, i) => `Subject ${i + 1}`);
 

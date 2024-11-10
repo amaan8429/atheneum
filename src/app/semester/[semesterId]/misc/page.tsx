@@ -1,10 +1,15 @@
 import Link from "next/link";
 
 type Props = {
-  params: { semesterId: string };
+  params: {
+    semesterId: string;
+  };
+  searchParams: {
+    [key: string]: string | string[] | undefined;
+  };
 };
 
-export default function MiscPage({ params }: Props) {
+export default async function MiscPage({ params, searchParams }: Props) {
   const { semesterId } = params;
 
   // In a real app, you'd fetch this data from an API or database
