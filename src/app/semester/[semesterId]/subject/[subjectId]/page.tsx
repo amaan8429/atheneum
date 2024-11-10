@@ -1,24 +1,32 @@
 import Link from "next/link";
 
-export default function SubjectPage({
-  params,
-}: {
+type Props = {
   params: { semesterId: string; subjectId: string };
-}) {
+};
+
+export default function SubjectPage({ params }: Props) {
+  const { semesterId, subjectId } = params;
+
   // In a real app, you'd fetch this data from an API or database
   const pdfs = [
-    { name: "Chapter 1", url: "/pdfs/semester1/subject1/chapter1.pdf" },
-    { name: "Chapter 2", url: "/pdfs/semester1/subject1/chapter2.pdf" },
+    {
+      name: "Chapter 1",
+      url: `/pdfs/semester${semesterId}/subject${subjectId}/chapter1.pdf`,
+    },
+    {
+      name: "Chapter 2",
+      url: `/pdfs/semester${semesterId}/subject${subjectId}/chapter2.pdf`,
+    },
     {
       name: "Practice Questions",
-      url: "/pdfs/semester1/subject1/practice.pdf",
+      url: `/pdfs/semester${semesterId}/subject${subjectId}/practice.pdf`,
     },
   ];
 
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">
-        Semester {params.semesterId} - Subject {params.subjectId}
+        Semester {semesterId} - Subject {subjectId}
       </h1>
       <div className="space-y-4">
         {pdfs.map((pdf, index) => (

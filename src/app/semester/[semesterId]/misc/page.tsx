@@ -1,8 +1,11 @@
 import Link from "next/link";
-import { Params } from "next/dist/server/request/params";
 
-export default async function MiscPage({ params }: { params: Params }) {
-  const semesterId = params.semesterId as string;
+type Props = {
+  params: { semesterId: string };
+};
+
+export default function MiscPage({ params }: Props) {
+  const { semesterId } = params;
 
   // In a real app, you'd fetch this data from an API or database
   const pdfs = [
