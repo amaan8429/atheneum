@@ -1,12 +1,12 @@
+// app/semester/[semesterId]/page.tsx
 import Link from "next/link";
 
-type Props = {
-  params: Promise<{ semesterId: string }>;
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+type Params = Promise<{ semesterId: string }>;
 
-export default async function SemesterPage({ params }: Props) {
-  const { semesterId } = await params;
+export default async function SemesterPage({ params }: { params: Params }) {
+  const resolvedParams = await params;
+  const { semesterId } = resolvedParams;
+
   const subjects = Array.from({ length: 5 }, (_, i) => `Subject ${i + 1}`);
 
   return (

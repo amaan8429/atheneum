@@ -1,12 +1,11 @@
+// app/semester/[semesterId]/misc/page.tsx
 import Link from "next/link";
 
-type Props = {
-  params: Promise<{ semesterId: string }>;
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+type Params = Promise<{ semesterId: string }>;
 
-export default async function MiscPage({ params }: Props) {
-  const { semesterId } = await params;
+export default async function MiscPage({ params }: { params: Params }) {
+  const resolvedParams = await params;
+  const { semesterId } = resolvedParams;
 
   // In a real app, you'd fetch this data from an API or database
   const pdfs = [
