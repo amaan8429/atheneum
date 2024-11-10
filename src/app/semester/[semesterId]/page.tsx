@@ -10,7 +10,7 @@ type Props = {
   };
 };
 
-export default async function SemesterPage({ params, searchParams }: Props) {
+export default async function SemesterPage({ params }: Props) {
   const { semesterId } = params;
   const subjects = Array.from({ length: 5 }, (_, i) => `Subject ${i + 1}`);
 

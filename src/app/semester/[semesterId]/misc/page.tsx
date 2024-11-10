@@ -9,7 +9,7 @@ type Props = {
   };
 };
 
-export default async function MiscPage({ params, searchParams }: Props) {
+export default async function MiscPage({ params }: Props) {
   const { semesterId } = params;
 
   // In a real app, you'd fetch this data from an API or database

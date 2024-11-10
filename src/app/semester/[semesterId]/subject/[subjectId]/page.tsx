@@ -11,7 +11,7 @@ type Props = {
   };
 };
 
-export default async function SubjectPage({ params, searchParams }: Props) {
+export default async function SubjectPage({ params }: Props) {
   const { semesterId, subjectId } = params;
 
   // In a real app, you'd fetch this data from an API or database
