@@ -57,7 +57,7 @@ export default function SemesterPage({ params }: { params: Params }) {
               <CardDescription>Additional resources</CardDescription>
             </CardHeader>
             <CardContent>
-              <Button asChild className="w-full">
+              <Button asChild variant="secondary" className="w-full">
                 <Link href={`/semester/${semesterId}/misc`}>
                   View Resources
                 </Link>

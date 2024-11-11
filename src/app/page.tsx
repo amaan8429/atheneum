@@ -62,7 +62,7 @@ export default function Home() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button asChild className="w-full h-24 text-lg">
+            <Button asChild variant="outline" className="w-full h-24 text-lg">
               <Link href={`/semester/${semester}`}>Semester {semester}</Link>
             </Button>
           </motion.div>
