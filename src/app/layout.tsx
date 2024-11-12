@@ -1,34 +1,30 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
-export const metadata: Metadata = {
-  title: "Atheneum",
-  description: "Subject Notes Sharing",
-};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="min-h-screen bg-background text-foreground">
+            <header className="container mx-auto px-4 py-4 flex justify-between items-center">
+              <h1 className="text-2xl font-bold">Atheneum</h1>
+              <ThemeToggle />
+            </header>
+            <main>{children}</main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -7,30 +7,36 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Navigation } from "@/components/Navigation";
+import { BRANCH_NAMES } from "@/utils/constants";
 
 export default function Home() {
-  const semesters = Array.from({ length: 8 }, (_, i) => i + 1);
+  const branches = Object.entries(BRANCH_NAMES).map(([slug, name]) => ({
+    name,
+    slug,
+  }));
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <Navigation items={[{ label: "Home" }]} />
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        className="text-center mb-12"
       >
-        <h1 className="text-4xl font-bold mb-6 text-center">
-          Welcome to Atheneum
-        </h1>
-        <p className="text-xl mb-8 text-center text-muted-foreground">
-          Your one-stop platform for sharing and accessing subject notes
+        <h1 className="text-4xl font-bold mb-4">Welcome to Atheneum</h1>
+        <p className="text-lg text-gray-600">
+          Your one-stop platform for sharing and accessing subject notes across
+          all engineering branches
         </p>
       </motion.div>
 
-      <Card className="mb-8">
+      <Card className="mb-12">
         <CardHeader>
           <CardTitle>About Atheneum</CardTitle>
           <CardDescription>
@@ -38,33 +44,34 @@ export default function Home() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <p>
+          <p className="text-gray-600">
             Atheneum is a comprehensive note-sharing platform designed to help
-            students access and share academic resources across 8 semesters.
-            With a wide range of subjects and easy-to-navigate interface, we aim
-            to make learning collaborative and efficient.
+            students access and share academic resources across various
+            engineering branches and semesters. With a wide range of subjects
+            and an easy-to-navigate interface, we aim to make learning
+            collaborative and efficient.
           </p>
         </CardContent>
-        <CardFooter>
-          <Button asChild>
-            <Link href="#semesters">Explore Semesters</Link>
-          </Button>
-        </CardFooter>
       </Card>
 
-      <h2 className="text-2xl font-semibold mb-4" id="semesters">
-        Semesters
-      </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {semesters.map((semester) => (
+      <h2 className="text-2xl font-bold mb-6">Engineering Branches</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {branches.map((branch) => (
           <motion.div
-            key={semester}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            key={branch.slug}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
-            <Button asChild variant="outline" className="w-full h-24 text-lg">
-              <Link href={`/semester/${semester}`}>Semester {semester}</Link>
-            </Button>
+            <Card className="h-full">
+              <CardHeader>
+                <CardTitle className="text-xl">{branch.name}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button asChild className="w-full">
+                  <Link href={`/branch/${branch.slug}`}>Explore Subjects</Link>
+                </Button>
+              </CardContent>
+            </Card>
           </motion.div>
         ))}
       </div>
