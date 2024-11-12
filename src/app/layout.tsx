@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default function RootLayout({
   children,
@@ -22,7 +23,10 @@ export default function RootLayout({
               <h1 className="text-2xl font-bold">Atheneum</h1>
               <ThemeToggle />
             </header>
-            <main>{children}</main>
+            <main>
+              {children}
+              <SpeedInsights />
+            </main>
           </div>
         </ThemeProvider>
       </body>
